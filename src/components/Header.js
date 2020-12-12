@@ -20,13 +20,13 @@ export default function() {
     <Header>
       <List>
         <Item>
-          <StyledLink href="/">Movies</StyledLink>
+          <StyledLink to="/">Movies</StyledLink>
         </Item>
         <Item>
-          <StyledLink href="/tv">TV</StyledLink>
+          <StyledLink to="/tv">TV</StyledLink>
         </Item>
         <Item>
-          <StyledLink href="/search">Search</StyledLink>
+          <StyledLink to="/search">Search</StyledLink>
         </Item>
       </List>
     </Header>
