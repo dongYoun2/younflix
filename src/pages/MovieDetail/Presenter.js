@@ -2,7 +2,7 @@ import React from 'react';
 
 function Presenter() {
   return (
-    <div>Detail</div>
+    <div>Movie Detail</div>
   );
 }
 
