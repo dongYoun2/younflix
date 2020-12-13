@@ -1,7 +1,7 @@
 import React from 'react';
-import Home from 'Routes/Home';
-import TV from 'Routes/TV';
-import Search from 'Routes/Search';
+import Home from 'pages/Home';
+import TV from 'pages/TV';
+import Search from 'pages/Search';
 import Header from 'components/Header';
 import { 
   BrowserRouter, 
