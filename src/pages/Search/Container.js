@@ -1,8 +1,8 @@
 import React from 'react';
-import Presenter from './Presenter';
+import SearchPresenter from './Presenter';
 import { movieApi, tvApi } from 'api';
 
-class Container extends React.Component {
+class SearchContainer extends React.Component {
   state = {
     movies: null,
     tvs: null,
@@ -38,7 +38,7 @@ class Container extends React.Component {
     const { movies, tvs, searchTerm, loading, error } = this.state;
 
     return (
-      <Presenter
+      <SearchPresenter
         movies={movies}
         tvs={tvs}
         searchTerm={searchTerm}
@@ -50,4 +50,4 @@ class Container extends React.Component {
   }
 }
 
-export default Container;
+export default SearchContainer;

@@ -1,7 +1,7 @@
 import React from 'react';
-import Presenter from './Presenter';
+import MovieDetailPresenter from './Presenter';
 
-class Container extends React.Component {
+class MovieDetailContainer extends React.Component {
   state = {
     result: null,
     error: null,
@@ -12,7 +12,7 @@ class Container extends React.Component {
     const { result, error, loading } = this.state;
 
     return (
-      <Presenter 
+      <MovieDetailPresenter 
         result={result}
         error={error}
         loading={loading}
@@ -21,4 +21,4 @@ class Container extends React.Component {
   }
 }
 
-export default Container;
+export default MovieDetailContainer;

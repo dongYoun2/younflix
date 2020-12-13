@@ -1,9 +1,9 @@
 import React from 'react';
 
-function Presenter() {
+function TVDetailPresenter() {
   return (
     <div>TV Detail</div>
   );
 }
 
-export default Presenter;
+export default TVDetailPresenter;

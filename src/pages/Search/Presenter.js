@@ -1,9 +1,9 @@
 import React from 'react';
 
-function Presenter() {
+function SearchPresenter() {
   return (
     <div>Search</div>
   );
 }
 
-export default Presenter;
+export default SearchPresenter;
