@@ -1,9 +1,9 @@
-import {createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
-
+  
   a {
     text-decoration: none;
     color: inherit;
@@ -20,6 +20,7 @@ const GlobalStyle = createGlobalStyle`
     color: #fdfdfd;
     padding-top: 50px;
   }
+
 `
 
 export default GlobalStyle;
