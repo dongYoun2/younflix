@@ -4,22 +4,24 @@ import TV from 'Routes/TV';
 import Search from 'Routes/Search';
 import Header from 'components/Header';
 import { 
-  BrowserRouter as Router, 
+  BrowserRouter, 
   Route, 
   Switch, 
   Redirect 
 } from 'react-router-dom';
 
-export default function() {
+function Router() {
   return (
-    <Router>
-    <Header />
+    <BrowserRouter>
+      <Header />
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/tv" exact component={TV} />
         <Route path="/search" exact component={Search} />
         <Redirect from="*" to="/" />
       </Switch>
-    </Router>
+    </BrowserRouter>
   );
 }
+
+export default Router;
