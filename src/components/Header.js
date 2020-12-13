@@ -28,7 +28,7 @@ const Item = styled.li`
   height: 50px;
   text-align: center;
   border-bottom: 3px solid ${props => props.current ? '#3498db' : 'transparent'};
-  transition: border-bottom-width 0.5s ease-in-out;
+  transition: border-bottom 0.3s ease-in-out;
   /* border-bottom-width: 3px; */
   /* border-bottom-style: solid; */
   /* border-bottom-color: ${props => props.current ? '#3498db' : 'transparent'}; */
