@@ -56,7 +56,6 @@ class SearchContainer extends React.Component {
 
   render() {
     const { movies, tvs, searchTerm, loading, error } = this.state;
-    console.log(this.state);
 
     return (
       <SearchPresenter

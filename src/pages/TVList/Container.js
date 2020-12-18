@@ -67,7 +67,7 @@ class TVListContainer extends React.Component {
         topRated={topRated}
         popular={popular}
         airingToday={airingToday}
-        loading={topRatedLoading && popularLoading && airingTodayLoading}
+        loading={topRatedLoading || popularLoading || airingTodayLoading}
         error={error}
       />
     );
