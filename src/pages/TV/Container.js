@@ -11,19 +11,46 @@ class TVContainer extends React.Component {
     error: null,
   };
 
-  async componentDidMount() {
+  fetchTopRated = async () => {
     try {
       const { data: { results: topRated } } = await tvApi.fetchTopRated();
-      const { data: { results: popular } } = await tvApi.fetchPopular();
-      const { data: { results: airingToday } } = await tvApi.fetchAiringToday();
-
-      this.setState({ topRated, popular, airingToday });
+      this.setState({ topRated });
     } catch {
-      this.setState({ error: "Can't find TVs information." });
-    } finally {
-      this.setState({ loading: false });
+      this.setState({ error: "Can't find TVs toprated information."});
     }
+  };
+
+  fetchPopular = async () => {
+    try {
+      const { data: { results: popular } } = await tvApi.fetchPopular();
+      this.setState({ popular });
+    } catch {
+      this.setState({ error: "Can't find TVs popular information."});
+    }
+  };
+
+  fetchAiringToday = async () => {
+    try {
+      const { data: { results: airingToday } } = await tvApi.fetchAiringToday();
+      this.setState({ airingToday });
+    } catch {
+      this.setState({ error: "Can't find TVs airingToday information."});
+    }
+  };
+
+  componentDidMount() {
+    this.fetchTopRated();
+    this.fetchPopular();
+    this.fetchAiringToday();
+    this.setState({ loading: false });
   }
+
+  // componentDidMount() {
+  //   Promise.all([tvApi.fetcTopRated(), tvApi.fetchPopular(), tvApi.fetchAiringToday()])
+  //   .then(([{ data: { results: topRated }}, { data: { results: popular }}, { data: { results: airingToday }}]) => this.setState({ topRated, popular, airingToday}))
+  //   .catch(err => this.setState({ error: "Can't find TVs information."}))
+  //   .finally(() => this.setState({ loading: false }));
+  // }
 
   render() {
     const { topRated, popular, airingToday, loading, error } = this.state;

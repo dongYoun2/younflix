@@ -5,33 +5,60 @@ import { movieApi } from 'api';
 class MovieContainer extends React.Component {
   state = {
     nowPlaying: null,
-    upoming: null,
+    upcoming: null,
     popular: null,
     error: null,
     loading: true,
   };
 
-  async componentDidMount() {
+  fetchNowPlaying = async () => {
     try {
       const { data: { results: nowPlaying } } = await movieApi.fetchNowPlaying();
-      const { data: { results: upcoming } } = await movieApi.fetchUpcoming();
-      const { data: { results: popular } } = await movieApi.fetchPopular();
-
-      this.setState({ nowPlaying, upcoming, popular });
+      this.setState({ nowPlaying });
     } catch {
-      this.setState({ error: "Can't find movies information." });
-    } finally {
-      this.setState({ loading: false });
+      this.setState({ error: "Can't find movies nowplaying information."});
     }
+  };
+
+  fetchUpcoming = async () => {
+    try {
+      const { data: { results: upcoming } } = await movieApi.fetchUpcoming();
+      this.setState({ upcoming });
+    } catch {
+      this.setState({ error: "Can't find movies upcoming information."});
+    }
+  };
+
+  fetchPopular = async () => {
+    try {
+      const { data: { results: popular } } = await movieApi.fetchPopular();
+      this.setState({ popular });
+    } catch {
+      this.setState({ error: "Can't find movies popular information."});
+    }
+  };
+
+  componentDidMount() {
+    this.fetchNowPlaying();
+    this.fetchUpcoming();
+    this.fetchPopular();
+    this.setState({ loading: false });
   }
 
+  // componentDidMount() {
+  //   Promise.all([movieApi.fetchNowPlaying(), movieApi.fetchUpcoming(), movieApi.fetchPopular()])
+  //   .then(([{ data: { results: nowPlaying } }, { data: { results: upcoming } }, { data: { results: popular } }]) => this.setState({ nowPlaying, upcoming, popular }))
+  //   .catch(err => this.setState({ error: "Can't find movies inforamtion."}))
+  //   .finally(() => this.setState({ loading: false }));
+  // }
+
   render() {
-    const { nowPlaying, upComing, popular, error, loading } = this.state;
+    const { nowPlaying, upcoming, popular, error, loading } = this.state;
 
     return (
       <MoviePresenter 
         nowPlaying={nowPlaying}
-        upComing={upComing}
+        upcoming={upcoming}
         popular={popular}
         error={error}
         loading={loading}

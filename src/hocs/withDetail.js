@@ -1,6 +1,6 @@
 import React from 'react';
 
-function withDetail(DetailPresenter, getDetail) {
+function withDetail(DetailPresenter, fetchDetail) {
   return class extends React.Component {
     constructor(props) {
       super(props);
@@ -19,7 +19,7 @@ function withDetail(DetailPresenter, getDetail) {
       }
 
       try {
-        const { data } = await getDetail(parsedId);
+        const { data } = await fetchDetail(parsedId);
         this.setState({ data });
       } catch {
         this.setState({ error: "Can't find anything."});

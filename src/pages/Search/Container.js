@@ -17,21 +17,32 @@ class SearchContainer extends React.Component {
     }
   };
 
-  search = async () => {
+  searchMovies = async () => {
     const { searchTerm } = this.state;
-
-    this.setState({ loading: true });
 
     try {
       const { data: { results: movies } } = await movieApi.searchByTerm(searchTerm);
-      const { data: { results: tvs } } = await tvApi.searchByTerm(searchTerm);
-
-      this.setState({ movies, tvs });
+      this.setState({ movies });
     } catch {
-      this.setState({ error: "Can't find any results" });
-    } finally {
-      this.setState({ loading: false });
+      this.setState({ error: "Can't find any movies results." });
     }
+  };
+
+  searchTVs = async () => {
+    const { searchTerm } = this.state;
+
+    try {
+      const { data: { results: tvs } } = await tvApi.searchByTerm(searchTerm);
+      this.setState({ tvs });
+    } catch {
+      this.setState({ error: "Can't find any TVs results." });
+    }
+  };
+
+  search = async () => {
+    this.searchMovies();
+    this.searchTVs();
+    this.setState({ loading: false });
   };
 
   render() {
