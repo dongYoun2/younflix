@@ -8,7 +8,9 @@ class MovieListContainer extends React.Component {
     upcoming: null,
     popular: null,
     error: null,
-    loading: true,
+    nowPlayingLoading: true,
+    upcomingLoading: true,
+    popularLoading: true,
   };
 
   fetchNowPlaying = async () => {
@@ -17,6 +19,8 @@ class MovieListContainer extends React.Component {
       this.setState({ nowPlaying });
     } catch {
       this.setState({ error: "Can't find movies nowplaying information."});
+    } finally {
+      this.setState({ nowPlayingLoading: false });
     }
   };
 
@@ -26,6 +30,8 @@ class MovieListContainer extends React.Component {
       this.setState({ upcoming });
     } catch {
       this.setState({ error: "Can't find movies upcoming information."});
+    } finally {
+      this.setState({ upcomingLoading: false });
     }
   };
 
@@ -35,6 +41,8 @@ class MovieListContainer extends React.Component {
       this.setState({ popular });
     } catch {
       this.setState({ error: "Can't find movies popular information."});
+    } finally {
+      this.setState({ popularLoading: false });
     }
   };
 
@@ -42,18 +50,11 @@ class MovieListContainer extends React.Component {
     this.fetchNowPlaying();
     this.fetchUpcoming();
     this.fetchPopular();
-    this.setState({ loading: false });
   }
 
-  // componentDidMount() {
-  //   Promise.all([movieApi.fetchNowPlaying(), movieApi.fetchUpcoming(), movieApi.fetchPopular()])
-  //   .then(([{ data: { results: nowPlaying } }, { data: { results: upcoming } }, { data: { results: popular } }]) => this.setState({ nowPlaying, upcoming, popular }))
-  //   .catch(err => this.setState({ error: "Can't find movies inforamtion."}))
-  //   .finally(() => this.setState({ loading: false }));
-  // }
-
   render() {
-    const { nowPlaying, upcoming, popular, error, loading } = this.state;
+    const { nowPlaying, upcoming, popular, error, nowPlayingLoading, upcomingLoading, popularLoading } = this.state;
+    console.log(this.state);
 
     return (
       <MovieListPresenter 
@@ -61,7 +62,7 @@ class MovieListContainer extends React.Component {
         upcoming={upcoming}
         popular={popular}
         error={error}
-        loading={loading}
+        loading={nowPlayingLoading && upcomingLoading && popularLoading }
       />
     );
   }

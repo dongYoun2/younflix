@@ -7,8 +7,10 @@ class TVListContainer extends React.Component {
     topRated: null,
     popular: null,
     airingToday: null,
-    loading: true,
     error: null,
+    topRatedLoading: true,
+    popularLoading: true,
+    airingTodayLoading: true,
   };
 
   fetchTopRated = async () => {
@@ -17,6 +19,8 @@ class TVListContainer extends React.Component {
       this.setState({ topRated });
     } catch {
       this.setState({ error: "Can't find TVs toprated information."});
+    } finally {
+      this.setState({ topRatedLoading: false });
     }
   };
 
@@ -26,6 +30,8 @@ class TVListContainer extends React.Component {
       this.setState({ popular });
     } catch {
       this.setState({ error: "Can't find TVs popular information."});
+    } finally {
+      this.setState({ popularLoading: false });
     }
   };
 
@@ -35,6 +41,8 @@ class TVListContainer extends React.Component {
       this.setState({ airingToday });
     } catch {
       this.setState({ error: "Can't find TVs airingToday information."});
+    } finally {
+      this.setState({ airingTodayLoading: false });
     }
   };
 
@@ -42,7 +50,6 @@ class TVListContainer extends React.Component {
     this.fetchTopRated();
     this.fetchPopular();
     this.fetchAiringToday();
-    this.setState({ loading: false });
   }
 
   // componentDidMount() {
@@ -53,14 +60,14 @@ class TVListContainer extends React.Component {
   // }
 
   render() {
-    const { topRated, popular, airingToday, loading, error } = this.state;
+    const { topRated, popular, airingToday, error, topRatedLoading, popularLoading, airingTodayLoading } = this.state;
 
     return (
       <TVListPresenter 
         topRated={topRated}
         popular={popular}
         airingToday={airingToday}
-        loading={loading}
+        loading={topRatedLoading && popularLoading && airingTodayLoading}
         error={error}
       />
     );

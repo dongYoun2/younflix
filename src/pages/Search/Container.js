@@ -25,6 +25,8 @@ class SearchContainer extends React.Component {
       this.setState({ movies });
     } catch {
       this.setState({ error: "Can't find any movies results." });
+    } finally {
+      return true;
     }
   };
 
@@ -36,17 +38,25 @@ class SearchContainer extends React.Component {
       this.setState({ tvs });
     } catch {
       this.setState({ error: "Can't find any TVs results." });
+    } finally {
+      return true;
     }
   };
 
-  search = async () => {
-    this.searchMovies();
-    this.searchTVs();
-    this.setState({ loading: false });
+  search = () => {
+    this.setState({ loading: true });
+    
+    Promise.all([this.searchMovies(), this.searchTVs()])
+    .then(values => {
+      if(values.every(value => value === true)) {
+        this.setState({ loading: false });
+      }
+    });
   };
 
   render() {
     const { movies, tvs, searchTerm, loading, error } = this.state;
+    console.log(this.state);
 
     return (
       <SearchPresenter
