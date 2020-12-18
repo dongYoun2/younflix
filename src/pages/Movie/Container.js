@@ -13,9 +13,9 @@ class MovieContainer extends React.Component {
 
   async componentDidMount() {
     try {
-      const { data: { results: nowPlaying } } = await movieApi.getNowPlaying();
-      const { data: { results: upcoming } } = await movieApi.getUpcoming();
-      const { data: { results: popular } } = await movieApi.getPopular();
+      const { data: { results: nowPlaying } } = await movieApi.fetchNowPlaying();
+      const { data: { results: upcoming } } = await movieApi.fetchUpcoming();
+      const { data: { results: popular } } = await movieApi.fetchPopular();
 
       this.setState({ nowPlaying, upcoming, popular });
     } catch {

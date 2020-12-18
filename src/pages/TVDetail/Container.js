@@ -1,24 +1,7 @@
-import React from 'react';
 import TVDetailPresenter from './Presenter';
+import { tvApi } from 'api';
+import withDetail from 'HOCs/withDetail';
 
-class TVDetailContainer extends React.Component {
-  state = {
-    result: null,
-    error: null,
-    loading: true,
-  };
-
-  render() {
-    const { result, error, loading } = this.state;
-
-    return (
-      <TVDetailPresenter 
-        result={result}
-        error={error}
-        loading={loading}
-      />
-    );
-  }
-}
+const TVDetailContainer = withDetail(TVDetailPresenter, (id) => tvApi.fetchShowDetail(id));
 
 export default TVDetailContainer;

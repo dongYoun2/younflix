@@ -1,24 +1,7 @@
-import React from 'react';
 import MovieDetailPresenter from './Presenter';
+import { movieApi } from 'api';
+import withDetail from 'HOCs/withDetail';
 
-class MovieDetailContainer extends React.Component {
-  state = {
-    result: null,
-    error: null,
-    loading: true,
-  };
-
-  render() {
-    const { result, error, loading } = this.state;
-
-    return (
-      <MovieDetailPresenter 
-        result={result}
-        error={error}
-        loading={loading}
-      />
-    );
-  }
-}
+const MovieDetailContainer = withDetail(MovieDetailPresenter, (id) => movieApi.fetchMovieDetail(id));
 
 export default MovieDetailContainer;
