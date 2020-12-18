@@ -1,6 +1,6 @@
 import React from 'react';
-import Movie from 'pages/Movie';
-import TV from 'pages/TV';
+import MovieList from 'pages/MovieList';
+import TVList from 'pages/TVList';
 import Search from 'pages/Search';
 import MovieDetail from 'pages/MovieDetail';
 import TVDetail from 'pages/TVDetail';
@@ -17,8 +17,8 @@ function Router() {
     <BrowserRouter>
       <Header />
       <Switch>
-        <Route path="/" exact component={Movie} />
-        <Route path="/tv" exact component={TV} />
+        <Route path="/" exact component={MovieList} />
+        <Route path="/tv" exact component={TVList} />
         <Route path="/search" exact component={Search} />
         <Route path="/movie/:id" exact component={MovieDetail} />
         <Route path="/tv/:id" exact component={TVDetail} />

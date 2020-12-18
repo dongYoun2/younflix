@@ -1,9 +1,9 @@
 import React from 'react';
 
-function MoviePresenter() {
+function MovieListPresenter() {
   return (
     <div>Movie</div>
   );
 }
 
-export default MoviePresenter;
+export default MovieListPresenter;

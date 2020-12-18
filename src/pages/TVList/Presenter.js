@@ -1,9 +1,9 @@
 import React from 'react';
 
-function TVPresenter() {
+function TVListPresenter() {
   return (
     <div>TV shows</div>
   );
 }
 
-export default TVPresenter;
+export default TVListPresenter;

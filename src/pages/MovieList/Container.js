@@ -1,8 +1,8 @@
 import React from 'react';
-import MoviePresenter from './Presenter';
+import MovieListPresenter from './Presenter';
 import { movieApi } from 'api';
 
-class MovieContainer extends React.Component {
+class MovieListContainer extends React.Component {
   state = {
     nowPlaying: null,
     upcoming: null,
@@ -56,7 +56,7 @@ class MovieContainer extends React.Component {
     const { nowPlaying, upcoming, popular, error, loading } = this.state;
 
     return (
-      <MoviePresenter 
+      <MovieListPresenter 
         nowPlaying={nowPlaying}
         upcoming={upcoming}
         popular={popular}
@@ -67,4 +67,4 @@ class MovieContainer extends React.Component {
   }
 }
 
-export default MovieContainer;
+export default MovieListContainer;
