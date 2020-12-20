@@ -8,9 +8,9 @@ class MovieListContainer extends React.Component {
     upcoming: null,
     popular: null,
     error: null,
-    nowPlayingLoading: true,
-    upcomingLoading: true,
-    popularLoading: true,
+    isNowPlayingLoading: true,
+    isUpcomingLoading: true,
+    isPopularLoading: true,
   };
 
   fetchNowPlaying = async () => {
@@ -20,7 +20,7 @@ class MovieListContainer extends React.Component {
     } catch {
       this.setState({ error: "Can't find movies nowplaying information."});
     } finally {
-      this.setState({ nowPlayingLoading: false });
+      this.setState({ isNowPlayingLoading: false });
     }
   };
 
@@ -31,7 +31,7 @@ class MovieListContainer extends React.Component {
     } catch {
       this.setState({ error: "Can't find movies upcoming information."});
     } finally {
-      this.setState({ upcomingLoading: false });
+      this.setState({ isUpcomingLoading: false });
     }
   };
 
@@ -42,7 +42,7 @@ class MovieListContainer extends React.Component {
     } catch {
       this.setState({ error: "Can't find movies popular information."});
     } finally {
-      this.setState({ popularLoading: false });
+      this.setState({ isPopularLoading: false });
     }
   };
 
@@ -53,7 +53,7 @@ class MovieListContainer extends React.Component {
   }
 
   render() {
-    const { nowPlaying, upcoming, popular, error, nowPlayingLoading, upcomingLoading, popularLoading } = this.state;
+    const { nowPlaying, upcoming, popular, error, isNowPlayingLoading, isUpcomingLoading, isPopularLoading } = this.state;
 
     return (
       <MovieListPresenter 
@@ -61,7 +61,7 @@ class MovieListContainer extends React.Component {
         upcoming={upcoming}
         popular={popular}
         error={error}
-        loading={nowPlayingLoading || upcomingLoading || popularLoading }
+        isLoading={isNowPlayingLoading || isUpcomingLoading || isPopularLoading }
       />
     );
   }

@@ -2,40 +2,41 @@ import React from 'react';
 
 function withDetail(DetailPresenter, fetchDetail) {
   return class extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        data: null,
-        error: null,
-        loading: true,
-      };
-    }
+    state = {
+      data: null,
+      error: null,
+      isLoading: true,
+    };
   
-    async componentDidMount() {
+    fetchDetail = async (id) => {
+      try {
+        const { data } = await fetchDetail(id);
+        this.setState({ data });
+      } catch {
+        this.setState({ error: "Can't find anything."});
+      } finally {
+        this.setState({ isLoading: false });
+      }
+    };
+
+    componentDidMount() {
       const { match, history } = this.props;
       const parsedId = Number.parseInt(match.params.id);
       if(Number.isNaN(parsedId)) {
         return history.push('/'); // id가 숫자가 아니면 /로 이동
       }
 
-      try {
-        const { data } = await fetchDetail(parsedId);
-        this.setState({ data });
-      } catch {
-        this.setState({ error: "Can't find anything."});
-      } finally {
-        this.setState({ loading: false });
-      }
+      this.fetchDetail(parsedId);
     }
   
     render() {
-      const { data, error, loading } = this.state;
+      const { data, error, isLoading } = this.state;
   
       return (
         <DetailPresenter 
           data={data}
           error={error}
-          loading={loading}
+          isLoading={isLoading}
         />
       );
     }

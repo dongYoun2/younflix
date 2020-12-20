@@ -8,9 +8,9 @@ class TVListContainer extends React.Component {
     popular: null,
     airingToday: null,
     error: null,
-    topRatedLoading: true,
-    popularLoading: true,
-    airingTodayLoading: true,
+    isTopRatedLoading: true,
+    isPopularLoading: true,
+    isAiringTodayLoading: true,
   };
 
   fetchTopRated = async () => {
@@ -20,7 +20,7 @@ class TVListContainer extends React.Component {
     } catch {
       this.setState({ error: "Can't find TVs toprated information."});
     } finally {
-      this.setState({ topRatedLoading: false });
+      this.setState({ isTopRatedLoading: false });
     }
   };
 
@@ -31,7 +31,7 @@ class TVListContainer extends React.Component {
     } catch {
       this.setState({ error: "Can't find TVs popular information."});
     } finally {
-      this.setState({ popularLoading: false });
+      this.setState({ isPopularLoading: false });
     }
   };
 
@@ -42,7 +42,7 @@ class TVListContainer extends React.Component {
     } catch {
       this.setState({ error: "Can't find TVs airingToday information."});
     } finally {
-      this.setState({ airingTodayLoading: false });
+      this.setState({ isAiringTodayLoading: false });
     }
   };
 
@@ -56,18 +56,18 @@ class TVListContainer extends React.Component {
   //   Promise.all([tvApi.fetcTopRated(), tvApi.fetchPopular(), tvApi.fetchAiringToday()])
   //   .then(([{ data: { results: topRated }}, { data: { results: popular }}, { data: { results: airingToday }}]) => this.setState({ topRated, popular, airingToday}))
   //   .catch(err => this.setState({ error: "Can't find TVs information."}))
-  //   .finally(() => this.setState({ loading: false }));
+  //   .finally(() => this.setState({ isLoading: false }));
   // }
 
   render() {
-    const { topRated, popular, airingToday, error, topRatedLoading, popularLoading, airingTodayLoading } = this.state;
+    const { topRated, popular, airingToday, error, isTopRatedLoading, isPopularLoading, isAiringTodayLoading } = this.state;
 
     return (
       <TVListPresenter 
         topRated={topRated}
         popular={popular}
         airingToday={airingToday}
-        loading={topRatedLoading || popularLoading || airingTodayLoading}
+        isLoading={isTopRatedLoading || isPopularLoading || isAiringTodayLoading}
         error={error}
       />
     );

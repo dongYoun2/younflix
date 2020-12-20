@@ -7,21 +7,21 @@ class SearchContainer extends React.Component {
     movies: null,
     tvs: null,
     searchTerm: '',
-    loading: false,
+    isLoading: false,
     error: null,
   };
 
   handleSubmit = () => {
-    if(this.state.searchTerm !== '') {
-      this.search();
+    const { searchTerm } = this.state;
+
+    if(searchTerm !== '') {
+      this.search(searchTerm);
     }
   };
 
-  searchMovies = async () => {
-    const { searchTerm } = this.state;
-
+  searchMovies = async (term) => {
     try {
-      const { data: { results: movies } } = await movieApi.searchByTerm(searchTerm);
+      const { data: { results: movies } } = await movieApi.searchByTerm(term);
       this.setState({ movies });
     } catch {
       this.setState({ error: "Can't find any movies results." });
@@ -30,11 +30,9 @@ class SearchContainer extends React.Component {
     }
   };
 
-  searchTVs = async () => {
-    const { searchTerm } = this.state;
-
+  searchTVs = async (term) => {
     try {
-      const { data: { results: tvs } } = await tvApi.searchByTerm(searchTerm);
+      const { data: { results: tvs } } = await tvApi.searchByTerm(term);
       this.setState({ tvs });
     } catch {
       this.setState({ error: "Can't find any TVs results." });
@@ -43,26 +41,26 @@ class SearchContainer extends React.Component {
     }
   };
 
-  search = () => {
-    this.setState({ loading: true });
+  search = (term) => {
+    this.setState({ isLoading: true });
     
-    Promise.all([this.searchMovies(), this.searchTVs()])
+    Promise.all([this.searchMovies(term), this.searchTVs(term)])
     .then(values => {
       if(values.every(value => value === true)) {
-        this.setState({ loading: false });
+        this.setState({ isLoading: false });
       }
     });
   };
 
   render() {
-    const { movies, tvs, searchTerm, loading, error } = this.state;
+    const { movies, tvs, searchTerm, isLoading, error } = this.state;
 
     return (
       <SearchPresenter
         movies={movies}
         tvs={tvs}
         searchTerm={searchTerm}
-        loading={loading}
+        isLoading={isLoading}
         error={error}
         handleSubmit={this.handleSubmit}
       />
