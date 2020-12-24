@@ -56,7 +56,7 @@ class MovieListContainer extends React.Component {
     const { nowPlaying, upcoming, popular, error, isNowPlayingLoading, isUpcomingLoading, isPopularLoading } = this.state;
 
     return (
-      <MovieListPresenter 
+      <MovieListPresenter
         nowPlaying={nowPlaying}
         upcoming={upcoming}
         popular={popular}

@@ -63,7 +63,7 @@ class TVListContainer extends React.Component {
     const { topRated, popular, airingToday, error, isTopRatedLoading, isPopularLoading, isAiringTodayLoading } = this.state;
 
     return (
-      <TVListPresenter 
+      <TVListPresenter
         topRated={topRated}
         popular={popular}
         airingToday={airingToday}

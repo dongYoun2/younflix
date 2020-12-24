@@ -13,11 +13,10 @@ function MovieListPresenter({ nowPlaying, upcoming, popular, error, isLoading })
   }
 
   if(error) {
-    return <h3>Something went wrong. Page not found.</h3>;
+    return <h3>Something went wrong.</h3>;
   }
 
   // no error === nowPlaying, upcoming, popular all are array
-
   return (
     <Container>
       <Section title="Now Playing">
