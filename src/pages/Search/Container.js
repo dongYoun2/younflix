@@ -4,14 +4,20 @@ import { movieApi, tvApi } from 'api';
 
 class SearchContainer extends React.Component {
   state = {
-    movies: null,
-    tvs: null,
+    movies: [],
+    tvs: [],
     searchTerm: '',
     isLoading: false,
     error: null,
   };
 
-  handleSubmit = () => {
+  handleTermChange = (e) => {
+    const { currentTarget: { value } } = e;
+    this.setState({ searchTerm: value });
+  };
+
+  handleTermSubmit = (e) => {
+    e.preventDefault();
     const { searchTerm } = this.state;
 
     if(searchTerm !== '') {
@@ -43,7 +49,7 @@ class SearchContainer extends React.Component {
 
   search = (term) => {
     this.setState({ isLoading: true });
-    
+
     Promise.all([this.searchMovies(term), this.searchTVs(term)])
     .then(values => {
       if(values.every(value => value === true)) {
@@ -62,7 +68,8 @@ class SearchContainer extends React.Component {
         searchTerm={searchTerm}
         isLoading={isLoading}
         error={error}
-        handleSubmit={this.handleSubmit}
+        handleTermSubmit={this.handleTermSubmit}
+        handleTermChange={this.handleTermChange}
       />
     );
   }

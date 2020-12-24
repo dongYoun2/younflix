@@ -19,13 +19,13 @@ function TVListPresenter({ topRated, popular, airingToday, isLoading, error }) {
   return (
     <Container>
       <Section title="Top Rated Shows">
-        {topRated.map(show => <span>{show.name}</span>)}
+        {topRated.map(show => <span key={show.id}>{show.name}</span>)}
       </Section>
       <Section title="Popular Shows">
-        {popular.map(show => <span>{show.name}</span>)}
+        {popular.map(show => <span key={show.id}>{show.name}</span>)}
       </Section>
       <Section title="Airing Today">
-        {airingToday.map(show => <span>{show.name}</span>)}
+        {airingToday.map(show => <span key={show.id}>{show.name}</span>)}
       </Section>
     </Container>
   );
