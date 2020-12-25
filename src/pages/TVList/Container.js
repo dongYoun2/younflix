@@ -16,7 +16,6 @@ class TVListContainer extends React.Component {
   fetchTopRated = async () => {
     try {
       const { data: { results: topRated } } = await tvApi.fetchTopRated();
-      throw Error();
       this.setState({ topRated });
     } catch {
       this.setState({ error: "Can't find TVs information."});
