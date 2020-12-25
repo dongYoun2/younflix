@@ -18,7 +18,7 @@ class MovieListContainer extends React.Component {
       const { data: { results: nowPlaying } } = await movieApi.fetchNowPlaying();
       this.setState({ nowPlaying });
     } catch {
-      this.setState({ error: "Can't find movies nowplaying information."});
+      this.setState({ error: "Can't find movies information."});
     } finally {
       this.setState({ isNowPlayingLoading: false });
     }
@@ -29,7 +29,7 @@ class MovieListContainer extends React.Component {
       const { data: { results: upcoming } } = await movieApi.fetchUpcoming();
       this.setState({ upcoming });
     } catch {
-      this.setState({ error: "Can't find movies upcoming information."});
+      this.setState({ error: "Can't find movies information."});
     } finally {
       this.setState({ isUpcomingLoading: false });
     }
@@ -40,7 +40,7 @@ class MovieListContainer extends React.Component {
       const { data: { results: popular } } = await movieApi.fetchPopular();
       this.setState({ popular });
     } catch {
-      this.setState({ error: "Can't find movies popular information."});
+      this.setState({ error: "Can't find movies information."});
     } finally {
       this.setState({ isPopularLoading: false });
     }

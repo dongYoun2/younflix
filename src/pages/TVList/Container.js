@@ -16,9 +16,10 @@ class TVListContainer extends React.Component {
   fetchTopRated = async () => {
     try {
       const { data: { results: topRated } } = await tvApi.fetchTopRated();
+      throw Error();
       this.setState({ topRated });
     } catch {
-      this.setState({ error: "Can't find TVs toprated information."});
+      this.setState({ error: "Can't find TVs information."});
     } finally {
       this.setState({ isTopRatedLoading: false });
     }
@@ -29,7 +30,7 @@ class TVListContainer extends React.Component {
       const { data: { results: popular } } = await tvApi.fetchPopular();
       this.setState({ popular });
     } catch {
-      this.setState({ error: "Can't find TVs popular information."});
+      this.setState({ error: "Can't find TVs information."});
     } finally {
       this.setState({ isPopularLoading: false });
     }
@@ -40,7 +41,7 @@ class TVListContainer extends React.Component {
       const { data: { results: airingToday } } = await tvApi.fetchAiringToday();
       this.setState({ airingToday });
     } catch {
-      this.setState({ error: "Can't find TVs airingToday information."});
+      this.setState({ error: "Can't find TVs information."});
     } finally {
       this.setState({ isAiringTodayLoading: false });
     }

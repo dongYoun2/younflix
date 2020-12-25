@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Loader from 'components/Loader';
 import Section from 'components/Section';
+import Message from 'components/Message';
 
 const Container = styled.div`
   padding: 0 30px;
@@ -13,7 +14,7 @@ function TVListPresenter({ topRated, popular, airingToday, isLoading, error }) {
   }
 
   if(error) {
-    return <h3>Something went wrong.</h3>;
+    return <Message color="#e74c3c" text={error} />
   }
 
   return (
