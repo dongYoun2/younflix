@@ -1,33 +1,45 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import Loader from 'components/Loader';
-import Section from 'components/Section';
-import Message from 'components/Message';
+import React from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import Loader from "components/Loader";
+import Section from "components/Section";
+import Message from "components/Message";
 
 const Container = styled.div`
   padding: 0 30px;
-`
-function MovieListPresenter({ nowPlaying, upcoming, popular, error, isLoading }) {
-  if(isLoading) {
+`;
+function MovieListPresenter({
+  nowPlaying,
+  upcoming,
+  popular,
+  error,
+  isLoading,
+}) {
+  if (isLoading) {
     return <Loader />;
   }
 
-  if(error) {
-    return <Message color="#e74c3c" text={error} />
+  if (error) {
+    return <Message color="#e74c3c" text={error} />;
   }
 
   // no error === nowPlaying, upcoming, popular all are array
   return (
     <Container>
       <Section title="Now Playing">
-        {nowPlaying.map(movie => <span key={movie.id}>{movie.title}</span>)}
+        {nowPlaying.map((movie) => (
+          <span key={movie.id}>{movie.title}</span>
+        ))}
       </Section>
       <Section title="Upcoming Movies">
-        {upcoming.map(movie => <span key={movie.id}>{movie.title}</span>)}
+        {upcoming.map((movie) => (
+          <span key={movie.id}>{movie.title}</span>
+        ))}
       </Section>
       <Section title="Popular Movies">
-        {popular.map(movie => <span key={movie.id}>{movie.title}</span>)}
+        {popular.map((movie) => (
+          <span key={movie.id}>{movie.title}</span>
+        ))}
       </Section>
     </Container>
   );

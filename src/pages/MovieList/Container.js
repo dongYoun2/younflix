@@ -1,6 +1,6 @@
-import React from 'react';
-import MovieListPresenter from './Presenter';
-import { movieApi } from 'api';
+import React from "react";
+import MovieListPresenter from "./Presenter";
+import { movieApi } from "api";
 
 class MovieListContainer extends React.Component {
   state = {
@@ -15,10 +15,12 @@ class MovieListContainer extends React.Component {
 
   fetchNowPlaying = async () => {
     try {
-      const { data: { results: nowPlaying } } = await movieApi.fetchNowPlaying();
+      const {
+        data: { results: nowPlaying },
+      } = await movieApi.fetchNowPlaying();
       this.setState({ nowPlaying });
     } catch {
-      this.setState({ error: "Can't find movies information."});
+      this.setState({ error: "Can't find movies information." });
     } finally {
       this.setState({ isNowPlayingLoading: false });
     }
@@ -26,10 +28,12 @@ class MovieListContainer extends React.Component {
 
   fetchUpcoming = async () => {
     try {
-      const { data: { results: upcoming } } = await movieApi.fetchUpcoming();
+      const {
+        data: { results: upcoming },
+      } = await movieApi.fetchUpcoming();
       this.setState({ upcoming });
     } catch {
-      this.setState({ error: "Can't find movies information."});
+      this.setState({ error: "Can't find movies information." });
     } finally {
       this.setState({ isUpcomingLoading: false });
     }
@@ -37,10 +41,12 @@ class MovieListContainer extends React.Component {
 
   fetchPopular = async () => {
     try {
-      const { data: { results: popular } } = await movieApi.fetchPopular();
+      const {
+        data: { results: popular },
+      } = await movieApi.fetchPopular();
       this.setState({ popular });
     } catch {
-      this.setState({ error: "Can't find movies information."});
+      this.setState({ error: "Can't find movies information." });
     } finally {
       this.setState({ isPopularLoading: false });
     }
@@ -53,7 +59,15 @@ class MovieListContainer extends React.Component {
   }
 
   render() {
-    const { nowPlaying, upcoming, popular, error, isNowPlayingLoading, isUpcomingLoading, isPopularLoading } = this.state;
+    const {
+      nowPlaying,
+      upcoming,
+      popular,
+      error,
+      isNowPlayingLoading,
+      isUpcomingLoading,
+      isPopularLoading,
+    } = this.state;
 
     return (
       <MovieListPresenter
@@ -61,7 +75,7 @@ class MovieListContainer extends React.Component {
         upcoming={upcoming}
         popular={popular}
         error={error}
-        isLoading={isNowPlayingLoading || isUpcomingLoading || isPopularLoading }
+        isLoading={isNowPlayingLoading || isUpcomingLoading || isPopularLoading}
       />
     );
   }

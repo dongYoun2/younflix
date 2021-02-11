@@ -1,18 +1,20 @@
-import React from 'react';
-import SearchPresenter from './Presenter';
-import { movieApi, tvApi } from 'api';
+import React from "react";
+import SearchPresenter from "./Presenter";
+import { movieApi, tvApi } from "api";
 
 class SearchContainer extends React.Component {
   state = {
     movies: null,
     tvs: null,
-    searchTerm: '',
+    searchTerm: "",
     isLoading: false,
     error: null,
   };
 
   handleTermChange = (e) => {
-    const { currentTarget: { value } } = e;
+    const {
+      currentTarget: { value },
+    } = e;
     this.setState({ searchTerm: value });
   };
 
@@ -20,14 +22,16 @@ class SearchContainer extends React.Component {
     e.preventDefault();
     const { searchTerm } = this.state;
 
-    if(searchTerm !== '') {
+    if (searchTerm !== "") {
       this.search(searchTerm);
     }
   };
 
   searchMovies = async (term) => {
     try {
-      const { data: { results: movies } } = await movieApi.searchByTerm(term);
+      const {
+        data: { results: movies },
+      } = await movieApi.searchByTerm(term);
       this.setState({ movies });
     } catch {
       this.setState({ error: "Can't find any movies results." });
@@ -38,7 +42,9 @@ class SearchContainer extends React.Component {
 
   searchTVs = async (term) => {
     try {
-      const { data: { results: tvs } } = await tvApi.searchByTerm(term);
+      const {
+        data: { results: tvs },
+      } = await tvApi.searchByTerm(term);
       this.setState({ tvs });
     } catch {
       this.setState({ error: "Can't find any TVs results." });
@@ -50,12 +56,13 @@ class SearchContainer extends React.Component {
   search = (term) => {
     this.setState({ isLoading: true });
 
-    Promise.all([this.searchMovies(term), this.searchTVs(term)])
-    .then(values => {
-      if(values.every(value => value === true)) {
-        this.setState({ isLoading: false });
+    Promise.all([this.searchMovies(term), this.searchTVs(term)]).then(
+      (values) => {
+        if (values.every((value) => value === true)) {
+          this.setState({ isLoading: false });
+        }
       }
-    });
+    );
   };
 
   render() {

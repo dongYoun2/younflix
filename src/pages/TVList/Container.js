@@ -1,6 +1,6 @@
-import React from 'react';
-import TVListPresenter from './Presenter';
-import { tvApi } from 'api';
+import React from "react";
+import TVListPresenter from "./Presenter";
+import { tvApi } from "api";
 
 class TVListContainer extends React.Component {
   state = {
@@ -15,10 +15,12 @@ class TVListContainer extends React.Component {
 
   fetchTopRated = async () => {
     try {
-      const { data: { results: topRated } } = await tvApi.fetchTopRated();
+      const {
+        data: { results: topRated },
+      } = await tvApi.fetchTopRated();
       this.setState({ topRated });
     } catch {
-      this.setState({ error: "Can't find TVs information."});
+      this.setState({ error: "Can't find TVs information." });
     } finally {
       this.setState({ isTopRatedLoading: false });
     }
@@ -26,10 +28,12 @@ class TVListContainer extends React.Component {
 
   fetchPopular = async () => {
     try {
-      const { data: { results: popular } } = await tvApi.fetchPopular();
+      const {
+        data: { results: popular },
+      } = await tvApi.fetchPopular();
       this.setState({ popular });
     } catch {
-      this.setState({ error: "Can't find TVs information."});
+      this.setState({ error: "Can't find TVs information." });
     } finally {
       this.setState({ isPopularLoading: false });
     }
@@ -37,10 +41,12 @@ class TVListContainer extends React.Component {
 
   fetchAiringToday = async () => {
     try {
-      const { data: { results: airingToday } } = await tvApi.fetchAiringToday();
+      const {
+        data: { results: airingToday },
+      } = await tvApi.fetchAiringToday();
       this.setState({ airingToday });
     } catch {
-      this.setState({ error: "Can't find TVs information."});
+      this.setState({ error: "Can't find TVs information." });
     } finally {
       this.setState({ isAiringTodayLoading: false });
     }
@@ -60,14 +66,24 @@ class TVListContainer extends React.Component {
   // }
 
   render() {
-    const { topRated, popular, airingToday, error, isTopRatedLoading, isPopularLoading, isAiringTodayLoading } = this.state;
+    const {
+      topRated,
+      popular,
+      airingToday,
+      error,
+      isTopRatedLoading,
+      isPopularLoading,
+      isAiringTodayLoading,
+    } = this.state;
 
     return (
       <TVListPresenter
         topRated={topRated}
         popular={popular}
         airingToday={airingToday}
-        isLoading={isTopRatedLoading || isPopularLoading || isAiringTodayLoading}
+        isLoading={
+          isTopRatedLoading || isPopularLoading || isAiringTodayLoading
+        }
         error={error}
       />
     );
