@@ -15,7 +15,14 @@ const Title = styled.span``;
 
 const Year = styled.span``;
 
-function Poster({ id, imageUrl, title, rating, year, isMovie = false }) {
+function Poster({
+  id,
+  imageUrl,
+  title,
+  rating = 0,
+  year = "",
+  isMovie = false,
+}) {
   return (
     <Link to={isMovie ? `/movie/${id}` : `/show/${id}`}>
       <Container>
@@ -37,7 +44,7 @@ function Poster({ id, imageUrl, title, rating, year, isMovie = false }) {
 
 Poster.propTypes = {
   id: PropTypes.number.isRequired,
-  imageUrl: PropTypes.string,
+  imageUrl: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   rating: PropTypes.number,
   year: PropTypes.string,
