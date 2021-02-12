@@ -1,6 +1,6 @@
 import React from "react";
 
-function withDetail(DetailPresenter, fetchDetail) {
+function withDetail(DetailContainer, fetchDetail) {
   return class extends React.Component {
     state = {
       data: null,
@@ -33,7 +33,7 @@ function withDetail(DetailPresenter, fetchDetail) {
       const { data, error, isLoading } = this.state;
 
       return (
-        <DetailPresenter data={data} error={error} isLoading={isLoading} />
+        <DetailContainer data={data} error={error} isLoading={isLoading} />
       );
     }
   };

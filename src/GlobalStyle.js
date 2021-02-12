@@ -3,7 +3,7 @@ import reset from "styled-reset";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
-  
+
   a {
     text-decoration: none;
     color: inherit;
@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
     font-size: 12px;
     background-color: rgba(20, 20, 20, 1);
     color: #fdfdfd;
-    padding-top: 80px;
+    padding-top: 50px;
   }
 
 `;

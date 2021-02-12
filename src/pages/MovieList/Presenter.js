@@ -7,7 +7,7 @@ import Message from "components/Message";
 import Poster from "components/Poster";
 
 const Container = styled.div`
-  padding: 0 30px;
+  padding: 30px;
 `;
 function MovieListPresenter({
   nowPlaying,

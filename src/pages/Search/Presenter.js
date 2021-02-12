@@ -7,7 +7,7 @@ import Message from "components/Message";
 import Poster from "components/Poster";
 
 const Container = styled.div`
-  padding: 0 30px;
+  padding: 30px;
 `;
 
 const Form = styled.form`
@@ -41,7 +41,7 @@ function SearchPresenter({
               imageUrl={movie.poster_path}
               title={movie.original_title}
               rating={movie.vote_average}
-              year={movie.release_date.substring(0, 4)}
+              year={movie.release_date?.substring(0, 4)}
               isMovie={true}
             />
           ))}
@@ -55,7 +55,7 @@ function SearchPresenter({
               imageUrl={show.poster_path}
               title={show.original_name}
               rating={show.vote_average}
-              year={show.first_air_date.substring(0, 4)}
+              year={show.first_air_date?.substring(0, 4)}
             />
           ))}
       </Section>

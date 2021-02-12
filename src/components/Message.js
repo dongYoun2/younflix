@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const Container = styled.div`
   width: 100vw;
+  padding: 20px;
   display: flex;
   justify-content: center;
 `;

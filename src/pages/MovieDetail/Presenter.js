@@ -1,13 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
+import Loader from "components/Loader";
+import Message from "components/Message";
+import Detail from "components/Detail";
+function MovieDetailPresenter({ movies, error, isLoading }) {
+  if (isLoading) {
+    return <Loader />;
+  }
 
-function MovieDetailPresenter({ data, error, isLoading }) {
-  return <div>Movie Detail</div>;
+  if (error) {
+    return <Message color="#e74c3c" text={error} />;
+  }
+
+  return <Detail data={movies} />;
 }
 
 MovieDetailPresenter.propTypes = {
-  data: PropTypes.object,
+  movies: PropTypes.object,
   error: PropTypes.string,
   isLoading: PropTypes.bool.isRequired,
 };
