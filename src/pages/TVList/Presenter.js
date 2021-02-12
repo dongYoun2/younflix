@@ -5,6 +5,7 @@ import Loader from "components/Loader";
 import Section from "components/Section";
 import Message from "components/Message";
 import Poster from "components/Poster";
+import withTitle from "HOCs/withTitle";
 
 const Container = styled.div`
   padding: 30px;
@@ -72,4 +73,4 @@ TVListPresenter.propTypes = {
   error: PropTypes.string,
 };
 
-export default TVListPresenter;
+export default withTitle(TVListPresenter, "TV Shows");

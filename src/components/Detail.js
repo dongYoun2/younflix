@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Helmet from "react-helmet";
+import withTitle from "HOCs/withTitle";
 import noPosterImage from "assets/noPosterSmall.png";
 
 const Container = styled.div`
@@ -64,44 +66,46 @@ const Overview = styled.p`
 `;
 
 function Detail({ data }) {
+  const title = data.original_title ? data.original_title : data.original_name;
+  const release_date = data.release_date
+    ? data.release_date.substring(0, 4)
+    : data.first_air_date.substring(0, 4);
+  const runtime = data.runtime ? data.runtime : data.episode_run_time[0];
+  const HeadTitle = withTitle(null, title);
+
   return (
-    <Container>
-      <BackDrop
-        bgUrl={`https://image.tmdb.org/t/p/original${data.backdrop_path}`}
-      />
-      <Content>
-        <Cover
-          bgUrl={
-            data.poster_path
-              ? `https://image.tmdb.org/t/p/original${data.poster_path}`
-              : noPosterImage
-          }
+    <>
+      <HeadTitle />
+      <Container>
+        <BackDrop
+          bgUrl={`https://image.tmdb.org/t/p/original${data.backdrop_path}`}
         />
-        <Data>
-          <Title>
-            {data.original_title ? data.original_title : data.original_name}
-          </Title>
-          <InfoContainer>
-            <span>
-              {data.release_date
-                ? data.release_date.substring(0, 4)
-                : data.first_air_date.substring(0, 4)}
-            </span>
-            <Divider>•</Divider>
-            <span>
-              {data.runtime ? data.runtime : data.episode_run_time[0]} min
-            </span>
-            <Divider>•</Divider>
-            <span>
-              {data?.genres
-                .map((genre) => genre.name)
-                .reduce((acc, cur) => [acc, " / ", cur])}
-            </span>
-          </InfoContainer>
-          <Overview>{data.overview}</Overview>
-        </Data>
-      </Content>
-    </Container>
+        <Content>
+          <Cover
+            bgUrl={
+              data.poster_path
+                ? `https://image.tmdb.org/t/p/original${data.poster_path}`
+                : noPosterImage
+            }
+          />
+          <Data>
+            <Title>{title}</Title>
+            <InfoContainer>
+              <span>{release_date}</span>
+              <Divider>•</Divider>
+              <span>{runtime} min</span>
+              <Divider>•</Divider>
+              <span>
+                {data?.genres
+                  .map((genre) => genre.name)
+                  .reduce((acc, cur) => [acc, " / ", cur])}
+              </span>
+            </InfoContainer>
+            <Overview>{data.overview}</Overview>
+          </Data>
+        </Content>
+      </Container>
+    </>
   );
 }
 

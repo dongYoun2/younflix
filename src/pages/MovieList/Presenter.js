@@ -5,6 +5,7 @@ import Loader from "components/Loader";
 import Section from "components/Section";
 import Message from "components/Message";
 import Poster from "components/Poster";
+import withTitle from "HOCs/withTitle";
 
 const Container = styled.div`
   padding: 30px;
@@ -81,4 +82,4 @@ MovieListPresenter.propTypes = {
   isLoading: PropTypes.bool.isRequired,
 };
 
-export default MovieListPresenter;
+export default withTitle(MovieListPresenter, "Movies");

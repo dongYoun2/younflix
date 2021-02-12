@@ -5,6 +5,8 @@ import Loader from "components/Loader";
 import Section from "components/Section";
 import Message from "components/Message";
 import Poster from "components/Poster";
+import withTitle from "HOCs/withTitle";
+import Helmet from "react-helmet";
 
 const Container = styled.div`
   padding: 30px;
@@ -94,4 +96,4 @@ SearchPresenter.propTypes = {
   handleTermChange: PropTypes.func.isRequired,
 };
 
-export default SearchPresenter;
+export default withTitle(SearchPresenter, "Search");
