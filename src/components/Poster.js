@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div``;
+
 const ImageContainer = styled.div``;
 
 const Image = styled.div``;
