@@ -52,8 +52,8 @@ function Header({ location: { pathname } }) {
         <Item current={pathname === "/"}>
           <StyledLink to="/">Movies</StyledLink>
         </Item>
-        <Item current={pathname === "/tv"}>
-          <StyledLink to="/tv">TV</StyledLink>
+        <Item current={pathname === "/shows"}>
+          <StyledLink to="/shows">TV</StyledLink>
         </Item>
         <Item current={pathname === "/search"}>
           <StyledLink to="/search">Search</StyledLink>

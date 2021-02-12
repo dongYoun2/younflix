@@ -13,10 +13,10 @@ function Router() {
       <Header />
       <Switch>
         <Route path="/" exact component={MovieList} />
-        <Route path="/tv" exact component={TVList} />
+        <Route path="/shows" exact component={TVList} />
         <Route path="/search" exact component={Search} />
         <Route path="/movie/:id" exact component={MovieDetail} />
-        <Route path="/tv/:id" exact component={TVDetail} />
+        <Route path="/show/:id" exact component={TVDetail} />
         <Redirect from="*" to="/" />
       </Switch>
     </BrowserRouter>

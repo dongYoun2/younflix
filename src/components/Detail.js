@@ -39,6 +39,30 @@ const Cover = styled.div`
   border-radius: 5px;
 `;
 
+const Data = styled.div`
+  width: 70%;
+  margin-left: 10px;
+`;
+
+const Title = styled.h3`
+  font-size: 32px;
+`;
+
+const InfoContainer = styled.div`
+  margin: 20px 0;
+`;
+
+const Divider = styled.span`
+  margin: 0 10px;
+`;
+
+const Overview = styled.p`
+  font-size: 12px;
+  opacity: 0.7;
+  line-height: 1.5;
+  width: 50%;
+`;
+
 function Detail({ data }) {
   return (
     <Container>
@@ -53,6 +77,29 @@ function Detail({ data }) {
               : noPosterImage
           }
         />
+        <Data>
+          <Title>
+            {data.original_title ? data.original_title : data.original_name}
+          </Title>
+          <InfoContainer>
+            <span>
+              {data.release_date
+                ? data.release_date.substring(0, 4)
+                : data.first_air_date.substring(0, 4)}
+            </span>
+            <Divider>•</Divider>
+            <span>
+              {data.runtime ? data.runtime : data.episode_run_time[0]} min
+            </span>
+            <Divider>•</Divider>
+            <span>
+              {data?.genres
+                .map((genre) => genre.name)
+                .reduce((acc, cur) => [acc, " / ", cur])}
+            </span>
+          </InfoContainer>
+          <Overview>{data.overview}</Overview>
+        </Data>
       </Content>
     </Container>
   );
